@@ -4,25 +4,22 @@ from .models import Currency, Track_Fee
 
 class Currency_Serializer(serializers.ModelSerializer):
 
+    name = serializers.CharField(min_length=1,allow_blank=False)
+    exchange = serializers.FloatField()
+    fee_percentage = serializers.FloatField()
+    quantity = serializers.FloatField()
+
     class Meta:
         model = Currency
+        fields = ['id', 'name', 'exchange', 'fee_percentage', 'quantity']
 
+class Track_Fee_Serializer(serializers.ModelSerializer):
 
-class Track_Fee_Serializer(serializers.Serializer):
-    
     money_request = serializers.FloatField(max_value=1000, min_value=1)
     base = serializers.CharField(max_length=4, allow_blank=False)
     quote = serializers.CharField(max_length=4, allow_blank=False)
 
-
     class Meta:
         model = Track_Fee
-        fields = ('base', 'quote', 'money_request')
-
-class setup_Serializer(serializers.Serializer):  
-
-    generate = serializers.BooleanField(required=True)
-
-    class Meta:
-
-        fields = ('generate')
+        fields = ['id', 'base', 'quote', 'money_request',
+                  'fee_amount', 'date_transaction']

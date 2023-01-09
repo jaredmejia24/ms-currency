@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import currency
 
 urlpatterns = [
-    path("currencies", views.TestView.as_view())
+    path("currencies", currency.CurrencyView.as_view()),
+    path("generate", currency.GenerateView.as_view())
 ]
