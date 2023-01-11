@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import currency, exchange_rate, generate, change_currency
+from .views import currency, exchange_rate, generate, change_currency, fees
 
 urlpatterns = [
     path("currencies", currency.CurrencyView.as_view()),
@@ -9,4 +9,5 @@ urlpatterns = [
     path("check_exchange_rate/<str:base>/<str:quote>",
          exchange_rate.ExchangeRateView.as_view()),
     path("change_currency", change_currency.ChangeCurrencyView.as_view()),
+    path("track_fee", fees.FeesView.as_view())
 ]

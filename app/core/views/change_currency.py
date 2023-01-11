@@ -42,7 +42,7 @@ class ChangeCurrencyView(APIView):
         fee_amount = base.data['exchange'] * money_request * fee_cost
         formatted_fee_amount = float("{:4f}".format(fee_amount))
 
-        Track_Fee.objects.create(
+        track_fee = Track_Fee.objects.create(
             fee_amount=formatted_fee_amount,
             date_transaction=datetime.datetime.now(),
             money_request=money_request,
@@ -50,16 +50,8 @@ class ChangeCurrencyView(APIView):
             quote_currency=currency_dict['quote']
         )
 
-        quote = Currency_Serializer(currency_dict['quote'])
-        base = Currency_Serializer(currency_dict["base"])
+        track_fee_serializer = Track_Fee_Serializer(track_fee)
 
         return Response({'status': "success",
-                         'date_transaction': datetime.datetime.now(),
-                         'money_request': money_request,
-                         'base_currency': base.data['name'],
-                         'base_new_quantity': base.data['quantity'],
-                         'quote_currency': quote.data['name'],
-                         'quote_new_quantity': quote.data['quantity'],
-                         'fee_amount': formatted_fee_amount,
-                         'conversion_rate': conversion_rate
+                         "data": track_fee_serializer.data
                          })
