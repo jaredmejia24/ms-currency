@@ -10,7 +10,7 @@ Steps to build a Docker image:
 
 1.  Clone this repo
 
-        git clone https://github.com/jaredmejia24/reservations-api.git
+        git clone https://github.com/jaredmejia24/ms-currency.git
 
 2.  Build both images the backend server with the name api_reservations and the PostgreSQL database with the name db_reservations
 
