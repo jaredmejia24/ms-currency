@@ -16,10 +16,10 @@ class Currency_Serializer(serializers.ModelSerializer):
 class Track_Fee_Serializer(serializers.ModelSerializer):
 
     money_request = serializers.FloatField(max_value=1000, min_value=1)
-    base = serializers.CharField(max_length=4, allow_blank=False)
-    quote = serializers.CharField(max_length=4, allow_blank=False)
+    base_currency = serializers.CharField(max_length=4, allow_blank=False)
+    quote_currency = serializers.CharField(max_length=4, allow_blank=False)
 
     class Meta:
         model = Track_Fee
-        fields = ['id', 'base', 'quote', 'money_request',
+        fields = ['id', 'base_currency', 'quote_currency', 'money_request',
                   'fee_amount', 'date_transaction']
